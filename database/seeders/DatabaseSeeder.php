@@ -22,23 +22,23 @@ class DatabaseSeeder extends Seeder
             ]
         );
 
-//        $categories = [
-//            'Medical',
-//            'Sport',
-//            'Health',
-//            'Science',
-//            'Technology',
-//            'Politics',
-//            'Religious',
-//            'International',
-//            'Nature',
-//        ];
-//
-//        foreach ($categories as $category) {
-//            Category::create(['name' => $category]);
-//        }
-//
-//        Post::factory(100)->create();
+        $categories = [
+            'Medical',
+            'Sport',
+            'Health',
+            'Science',
+            'Technology',
+            'Politics',
+            'Religious',
+            'International',
+            'Nature',
+        ];
+
+        foreach ($categories as $category) {
+            Category::create(['name' => $category]);
+        }
+
+        Post::factory(100)->create();
 
     }
 }
