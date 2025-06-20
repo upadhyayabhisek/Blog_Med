@@ -1,4 +1,3 @@
 # my blog
-Bruh
-
-this is been done
+Testing git and github
+trying and leanring
