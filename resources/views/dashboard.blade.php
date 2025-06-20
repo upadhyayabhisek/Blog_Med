@@ -14,8 +14,15 @@
     <div class="mt-8 text-gray-900">
         <div class="p-4">
             @forelse($posts as $post)
-                <x-post-item :post="$post"></x-post-item>
-                @empty
+
+                @php
+                    $post_size = str_word_count($post->description);
+                    $read_time = number_format($post_size/150,2);
+                @endphp
+                <x-post-item :post="$post" :readTime="$read_time" />
+
+
+            @empty
                 <div style="
                     display: flex;
                     justify-content: center;

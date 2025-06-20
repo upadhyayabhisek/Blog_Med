@@ -44,6 +44,13 @@
                     {{ $post->title }}
                 </h5>
             </a>
+
+            <div>
+                <p>
+                    Read time: {{ $readTime }} min
+                </p>
+            </div>
+
             <div style="margin-bottom: 1rem; color: #4b5563; font-size: 1rem;">
                 {{ Str::words($post->description,20) }}
             </div>
