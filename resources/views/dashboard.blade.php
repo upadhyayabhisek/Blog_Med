@@ -70,6 +70,7 @@
                                 font-weight: 700;
                                 color: #111827;
                             ">
+
                                     {{ $post->title }}
                                 </h5>
                             </a>
@@ -105,6 +106,11 @@
 
             @endforeach
         </div>
+
+        <div style="display: flex; justify-content: center; margin-top: 20px;">
+            {{ $posts->onEachSide(1)->links() }}
+        </div>
+
     </div>
 
 
