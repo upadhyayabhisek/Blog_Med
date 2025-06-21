@@ -57,26 +57,12 @@
         </div>
 
         <!-- Read More Button -->
-        <a href="#"
-           style="
-                           display: inline-flex;
-                           align-items: center;
-                           padding: 0.5rem 0.75rem;
-                           font-size: 0.875rem;
-                           font-weight: 500;
-                           color: white;
-                           background-color: #2563eb;
-                           border-radius: 0.5rem;
-                           text-decoration: none;
-                           cursor: pointer;
-                           width: fit-content;
-                       "
-           onmouseover="this.style.backgroundColor='#1e40af'"
-           onmouseout="this.style.backgroundColor='#2563eb'">
-            Read more
+        <a href="#">
+            <x-primary-button>Read More
             <svg style="width: 1rem; height: 1rem; margin-left: 0.5rem;" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                 <path d="M1 5h12m0 0L9 1m4 4L9 9"/>
             </svg>
+            </x-primary-button>
         </a>
     </div>
 </div>
