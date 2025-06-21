@@ -1,6 +1,5 @@
 <x-app-layout>
 
-
     <div class="mb-4 border-b border-gray-200 dark:border-gray-700">
         <x-category-tabs>
             Not Loaded!
@@ -8,7 +7,7 @@
     </div>
 
 
-    <h1 class="text-4xl font-bold text-red-600">Tailwind is working!</h1>
+    <h1 class="text-4xl font-bold text-red-600">Tailwind is working</h1>
 
 
     <div class="mt-8 text-gray-900">
