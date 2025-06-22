@@ -36,7 +36,6 @@ class PostFactory extends Factory
             'user_id' => $user_id,
             'published_at' => $published_at,
             'read_time' => $read_time,
-
         ];
     }
 }

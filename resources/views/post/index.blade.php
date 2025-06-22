@@ -6,21 +6,16 @@
         </x-category-tabs>
     </div>
 
-
     <h1 class="text-4xl font-bold text-red-600">Tailwind is working</h1>
-
 
     <div class="mt-8 text-gray-900">
         <div class="p-4">
             @forelse($posts as $post)
-
                 @php
                     $post_size = str_word_count($post->description);
                     $read_time = number_format($post_size/150,2);
                 @endphp
                 <x-post-item :post="$post" :readTime="$read_time" />
-
-
             @empty
                 <div style="
                     display: flex;
@@ -29,16 +24,11 @@
                     ">
                         <p>No Post Uploaded</p>
                 </div>
-
             @endforelse
-
         </div>
 
         <div style="display: flex; justify-content: center; margin-top: 20px;">
             {{ $posts->onEachSide(1)->links() }}
         </div>
-
     </div>
-
-
 </x-app-layout>
