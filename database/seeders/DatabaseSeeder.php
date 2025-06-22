@@ -18,6 +18,7 @@ class DatabaseSeeder extends Seeder
         // User::factory(10)->create();
         User::factory()->create([
             'name'=>'Tester',
+            'username'=>'tester',
             'email'=>'test@testmail.com',
             ]
         );
@@ -38,7 +39,7 @@ class DatabaseSeeder extends Seeder
             Category::create(['name' => $category]);
         }
 
-        Post::factory(100)->create();
+//        Post::factory(100)->create();
 
     }
 }

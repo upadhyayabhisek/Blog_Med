@@ -23,7 +23,7 @@ Route::middleware('auth','verified')->group(function () {
     Route::get('/post/new', [PostController::class, 'create']
     )->name('post.create');
 
-    Route::post('/post', [PostController::class, 'store']
+    Route::post('/post/upload', [PostController::class, 'store']
     )->name('post.store');
 });
 

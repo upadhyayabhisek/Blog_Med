@@ -13,9 +13,27 @@
         @csrf
     </form>
 
-    <form method="post" action="{{ route('profile.update') }}" class="mt-6 space-y-6">
+    <form method="post" action="{{ route('profile.update') }}" class="mt-6 space-y-6" enctype="multipart/form-data">
         @csrf
         @method('patch')
+
+        @if ($user->image)
+            <div class="mx-auto w-32 h-32 relative -mt-16 border-4 border-white rounded-full overflow-hidden">
+                <img src="{{ Storage::url($user->image) }}" alt="Profile Image">
+            </div>
+        @endif
+
+        <div class="mt-4">
+            <x-input-label for="image" :value="__('Change Profile Pic')" />
+            <x-text-input id="image" class="block mt-1 w-full" type="file" name="image" autofocus />
+            <x-input-error :messages="$errors->get('image')" class="mt-2" />
+        </div>
+
+        <div>
+            <x-input-label for="username" :value="__('Username')" />
+            <x-text-input id="username" name="username" type="text" class="mt-1 block w-full" :value="old('username', $user->username)" required autofocus autocomplete="username" />
+            <x-input-error class="mt-2" :messages="$errors->get('username')" />
+        </div>
 
         <div>
             <x-input-label for="name" :value="__('Name')" />
@@ -45,6 +63,13 @@
                     @endif
                 </div>
             @endif
+        </div>
+
+        <div>
+            <x-input-label for="bio" :value="__('Write a bio')" />
+            <x-text-input-area id="bio" class="block mt-1 w-full" type="text" name="bio" autofocus maxLength="100" :value="trim(old('bio', $user->bio))">
+            </x-text-input-area>
+            <x-input-error :messages="$errors->get('bio')" class="mt-2" />
         </div>
 
         <div class="flex items-center gap-4">
