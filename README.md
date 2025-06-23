@@ -4,6 +4,12 @@
 
 A simple blog application built with Laravel. This project demonstrates basic CRUD (Create, Read, Update, Delete) functionality for managing blog posts.
 
+## plan
+- user mail verification
+- video upload
+- user to download entire post history
+
+
 ## Features
 - User authentication (Login/Register)
 - CRUD functionality for blog posts
