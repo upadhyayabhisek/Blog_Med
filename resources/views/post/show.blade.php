@@ -9,7 +9,6 @@
                         <h1 class="text-5xl font-bold text-gray-900 dark:text-white">{{ ucfirst($post->title) }}</h1>
                         <p class="text-sm text-gray-500 dark:text-gray-400 mt-2">
                             Published on {{ $post->created_at->format('d M Y') }}
-
                             <a href="#" class="inline-block p-4 border-b-2 rounded-t-lg
                                 text-gray-500 border-transparent hover:text-gray-600 hover:border-gray-300
                                 dark:text-gray-400 dark:hover:text-gray-300 dark:border-gray-700">
@@ -37,11 +36,11 @@
                                 >
                             </a>
                         @endif
-                        <span class="text-gray-700 dark:text-gray-300 text-base font-medium">
-                            Posted by {{ $post->user->username }}
-                        </span>
-
-                        <span>
+                            <a href="{{ route('profile.show', $post->user) }}"
+                               class="text-blue-600 dark:text-blue-400 font-medium text-base hover:underline hover:text-blue-800 dark:hover:text-blue-300 transition duration-150">
+                                Posted by {{ $post->user->name }}
+                            </a>
+                            <span>
                             <a href="#" class="inline-block px-5 py-2 text-sm font-semibold text-white bg-green-600 rounded-full hover:bg-green-700 transition duration-200 shadow-md">
                                 Follow
                             </a>
