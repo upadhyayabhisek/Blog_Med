@@ -30,5 +30,6 @@
         <div style="display: flex; justify-content: center; margin-top: 20px;">
             {{ $posts->onEachSide(1)->links() }}
         </div>
+
     </div>
 </x-app-layout>
