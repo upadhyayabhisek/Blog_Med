@@ -15,7 +15,7 @@
                     $post_size = str_word_count($post->description);
                     $read_time = number_format($post_size/150,2);
                 @endphp
-                <x-post-item :post="$post" :readTime="$read_time" />
+                <x-post-item :post="$post"/>
             @empty
                 <div style="
                     display: flex;

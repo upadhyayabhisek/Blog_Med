@@ -18,4 +18,21 @@ class Post extends Model
         'user_id',
         'published_at',
     ];
+
+    public function user(): \Illuminate\Database\Eloquent\Relations\BelongsTo
+    {
+        return $this->belongsTo(User::class);
+    }
+
+    public function readTime($wordsPerMinute = 150)
+    {
+        $post_size = str_word_count(strip_tags($this->description));
+        $read_time = ceil($post_size/$wordsPerMinute);
+        return max(1, $read_time);
+    }
+
+    public function category(): \Illuminate\Database\Eloquent\Relations\BelongsTo
+    {
+        return $this->belongsTo(Category::class);
+    }
 }
