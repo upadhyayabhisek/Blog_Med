@@ -10,7 +10,9 @@
     height: 350px;
 ">
     <!-- Fixed-size image -->
-    <a href="#" style="flex-shrink: 0;">
+    <a href="{{ route('post.show',
+            ['username'=>$post->user->username, 'post'=>$post->slug])
+        }}" style="flex-shrink: 0;">
         <img
             src="{{Storage::url($post->image)}}"
             alt="Blog Image"
@@ -32,7 +34,9 @@
         justify-content: space-between;
     ">
         <div>
-            <a href="#" style="text-decoration: none;">
+            <a href="{{ route('post.show',
+            ['username'=>$post->user->username, 'post'=>$post->slug])
+        }}" style="text-decoration: none;">
                 <h5 style="
                     margin-bottom: 0.75rem;
                     font-size: 1.5rem;
@@ -44,9 +48,7 @@
             </a>
 
             <div>
-                <p>
-                    Read time: {{ $readTime }} min
-                </p>
+
             </div>
 
             <div style="margin-bottom: 1rem; color: #4b5563; font-size: 1rem;">
@@ -55,7 +57,9 @@
         </div>
 
         <!-- Read More Button -->
-        <a href="#">
+        <a href="{{ route('post.show',
+            ['username'=>$post->user->username, 'post'=>$post->slug])
+        }}">
             <x-primary-button>Read More
                 <svg style="width: 1rem; height: 1rem; margin-left: 0.5rem;" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                     <path d="M1 5h12m0 0L9 1m4 4L9 9"/>
