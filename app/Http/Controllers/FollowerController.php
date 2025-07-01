@@ -12,7 +12,7 @@ class FollowerController extends Controller
     {
         $user->followers()->toggle(auth()->user());
         return response()->json([
-            'followers'=>$user->followers()->count(),
+            'followersCount'=>$user->followers()->count(),
             ]);
     }
 }

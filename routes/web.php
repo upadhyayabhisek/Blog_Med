@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\LikeController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\PublicProfileController;
 use Illuminate\Support\Facades\Route;
@@ -36,6 +37,11 @@ Route::middleware('auth','verified')->group(function () {
 
 Route::get('/follow/{user}', [FollowerController::class, 'followUnfollow'])
     ->name('follow');
+
+
+
+Route::post('/like/{post}', [LikeController::class, 'like'])->name('like');
+
 
 
 require __DIR__.'/auth.php';

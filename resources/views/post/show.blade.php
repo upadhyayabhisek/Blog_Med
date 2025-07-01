@@ -46,19 +46,19 @@
                                 Posted by {{ $post->user->name }}
                             </a>
 
-                            <div x-data="{ following: {{
-                                User::find($post->user_id)->isFollowedBy(auth()->user()) ? 'true' : 'false'}}, }">
-                                @if(auth()->user() && auth()->user()->id !== $post->user_id)
-                                <a href="#" x-text="following ? 'Unfollow' : 'Follow'" class="inline-block px-5 py-2 text-sm font-semibold text-white bg-green-600 rounded-full hover:bg-green-700 transition duration-200 shadow-md">
-                                    Follow
-                                </a>
-                                @endif
-                            </div>
+{{--                            <div x-data="{ following: {{--}}
+{{--                                User::find($post->user_id)->isFollowedBy(auth()->user()) ? 'true' : 'false'}}, }">--}}
+{{--                                @if(auth()->user() && auth()->user()->id !== $post->user_id)--}}
+{{--                                <a href="#" x-text="following ? 'Unfollow' : 'Follow'" class="inline-block px-5 py-2 text-sm font-semibold text-white bg-green-600 rounded-full hover:bg-green-700 transition duration-200 shadow-md">--}}
+{{--                                    Follow--}}
+{{--                                </a>--}}
+{{--                                @endif--}}
+{{--                            </div>--}}
 
                     </div>
 
                     <!-- Like Section -->
-                    <x-like-button></x-like-button>
+                    <x-like-button :post="$post"></x-like-button>
 
 
                     <!-- Word Count & Read Time -->

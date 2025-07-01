@@ -22,27 +22,31 @@
                             {{ $user->name }}
                         </h2>
 
-                        <p class="text-blue-500 dark:text-blue-300 text-sm mt-2">
-                            {{$user->followers()->count()}} Followers
-                        </p>
 
-                        <p class="text-grey-700 dark:text-grey-200 text-sm mt-3">
+                            <p class="text-grey-700 dark:text-grey-200 text-sm mt-3">
                             {{ $user->bio }}
-                        </p>
+                            </p>
 
-                        <div x-data="{ following: {{
-                                $user->isFollowedBy(auth()->user()) ? 'true' : 'false'
-                                }},
-                                 follow(){
-                                    this.following =!this.following
-                                    axios.get('/follow/{{ $user -> id }}').then(res => {
-                                        console.log(res.data)
-                                        }
-                                    ).catch(err =>{
-                                        console.log(err)
-                                    })
-                                 }
-                                 }">
+                        <div x-data="{
+                                following: {{ $user->isFollowedBy(auth()->user()) ? 'true' : 'false' }},
+                                followersCount: {{ $user->followers()->count() }},
+                                follow() {
+
+                                    axios.get('/follow/{{ $user->id }}')
+                                        .then(res => {
+                                            console.log(res.data);
+                                            this.following = !this.following;
+                                            this.followersCount = res.data.followersCount;
+                                        })
+                                        .catch(err => {
+                                            console.log(err);
+                                        });
+                                }
+                        }">
+                            <span class="mt-2 text-sm text-blue-700">
+                                <span x-text="followersCount"></span> Followers
+                            </span>
+
                             @if(auth()->user() && auth()->user()->id !== $user->id)
                                 <div class="mt-4">
                                     <button @click="follow()"
@@ -53,8 +57,9 @@
                                 </div>
                             @endif
                         </div>
-
                     </div>
+
+
                 </div>
 
                 {{-- Right: User's Posts --}}
