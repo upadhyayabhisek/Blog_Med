@@ -57,7 +57,13 @@ class User extends Authenticatable
         return $this->belongsToMany(User::class, 'followers', 'following_id', 'user_id');
     }
 
-    public function followers(){
+    public function followers(): \Illuminate\Database\Eloquent\Relations\BelongsToMany
+    {
         return $this->belongsToMany(User::class, 'followers', 'user_id', 'follower_id');
+    }
+
+    public function isFollowedBy(User $user){
+
+        return $this->followers()->where('follower_id',$user->id)->exists();
     }
 }

@@ -30,14 +30,29 @@
                             {{ $user->bio }}
                         </p>
 
-                        @if(auth()->user() && auth()->user()->id !== $user->id)
-                        <div class="mt-4">
-                            <button
-                                class="px-6 py-2 bg-blue-600 hover:bg-blue-700 text-white text-sm font-medium rounded-full shadow-sm transition duration-150">
-                                Follow
-                            </button>
+                        <div x-data="{ following: {{
+                                $user->isFollowedBy(auth()->user()) ? 'true' : 'false'
+                                }},
+                                 follow(){
+                                    this.following =!this.following
+                                    axios.get('/follow/{{ $user -> id }}').then(res => {
+                                        console.log(res.data)
+                                        }
+                                    ).catch(err =>{
+                                        console.log(err)
+                                    })
+                                 }
+                                 }">
+                            @if(auth()->user() && auth()->user()->id !== $user->id)
+                                <div class="mt-4">
+                                    <button @click="follow()"
+                                            x-text="following ? 'Unfollow' : 'Follow'"
+                                            :class="{'bg-blue-600 hover:bg-blue-700': following, 'bg-gray-400 hover:bg-gray-500': !following}"
+                                            class="px-6 py-2 text-white text-sm font-medium rounded-full shadow-sm transition duration-150">
+                                    </button>
+                                </div>
+                            @endif
                         </div>
-                        @endif
 
                     </div>
                 </div>
