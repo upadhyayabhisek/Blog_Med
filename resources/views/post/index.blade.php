@@ -6,7 +6,6 @@
         </x-category-tabs>
     </div>
 
-    <h1 class="text-4xl font-bold text-red-600">Tailwind is working</h1>
 
     <div class="mt-8 text-gray-900">
         <div class="p-4">

@@ -65,6 +65,12 @@
             @endauth
 
             @guest
+                <a href="{{route('register')}}" >
+                    Create acc
+                </a>
+                <a href="{{route('login')}}">
+                    login to acc
+                </a>
             @endguest
 
 
