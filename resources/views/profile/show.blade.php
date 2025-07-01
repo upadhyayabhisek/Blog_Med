@@ -23,20 +23,21 @@
                         </h2>
 
                         <p class="text-blue-500 dark:text-blue-300 text-sm mt-2">
-                            2,500 followers
+                            {{$user->followers()->count()}} Followers
                         </p>
 
                         <p class="text-grey-700 dark:text-grey-200 text-sm mt-3">
                             {{ $user->bio }}
                         </p>
 
+                        @if(auth()->user() && auth()->user()->id !== $user->id)
                         <div class="mt-4">
                             <button
                                 class="px-6 py-2 bg-blue-600 hover:bg-blue-700 text-white text-sm font-medium rounded-full shadow-sm transition duration-150">
                                 Follow
                             </button>
                         </div>
-
+                        @endif
 
                     </div>
                 </div>

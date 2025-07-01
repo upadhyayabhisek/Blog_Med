@@ -41,9 +41,11 @@
                                 Posted by {{ $post->user->name }}
                             </a>
                             <span>
+                            @if(auth()->user() && auth()->user()->id !== $post->user_id)
                             <a href="#" class="inline-block px-5 py-2 text-sm font-semibold text-white bg-green-600 rounded-full hover:bg-green-700 transition duration-200 shadow-md">
                                 Follow
                             </a>
+                            @endif
                         </span>
                     </div>
 
