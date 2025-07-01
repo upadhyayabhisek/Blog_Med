@@ -1,3 +1,8 @@
+@php
+    use App\Models\User;
+@endphp
+
+
 <x-app-layout>
     <div class="py-10 flex justify-center items-start min-h-screen bg-gray-50 dark:bg-gray-900 pt-16">
         <div class="w-full max-w-5xl p-8 bg-white dark:bg-gray-800 rounded-2xl shadow-xl">
@@ -40,11 +45,16 @@
                                class="text-blue-600 dark:text-blue-400 font-medium text-base hover:underline hover:text-blue-800 dark:hover:text-blue-300 transition duration-150">
                                 Posted by {{ $post->user->name }}
                             </a>
-                            <span>
-                            <a href="#" class="inline-block px-5 py-2 text-sm font-semibold text-white bg-green-600 rounded-full hover:bg-green-700 transition duration-200 shadow-md">
-                                Follow
-                            </a>
-                        </span>
+
+                            <div x-data="{ following: {{
+                                User::find($post->user_id)->isFollowedBy(auth()->user()) ? 'true' : 'false'}}, }">
+                                @if(auth()->user() && auth()->user()->id !== $post->user_id)
+                                <a href="#" x-text="following ? 'Unfollow' : 'Follow'" class="inline-block px-5 py-2 text-sm font-semibold text-white bg-green-600 rounded-full hover:bg-green-700 transition duration-200 shadow-md">
+                                    Follow
+                                </a>
+                                @endif
+                            </div>
+
                     </div>
 
                     <!-- Like Section -->
