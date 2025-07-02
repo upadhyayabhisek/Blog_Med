@@ -47,13 +47,32 @@
                 </h5>
             </a>
 
-            <div>
 
+            <div class="flex items-center gap-4 text-gray-600 text-sm">
+                @if($post->user->image)
+                    <img
+                        src="{{ Storage::url($post->user->image) }}"
+                        alt="Author Image"
+                        class="w-12 h-12 rounded-full object-cover border-2 border-gray-300 dark:border-gray-600 transform transition-transform duration-300 hover:scale-105"
+                    >
+                @else
+                    <img
+                        src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQIf4R5qPKHPNMyAqV-FjS_OTBB8pfUV29Phg&s"
+                        alt="Default Author Image"
+                        class="w-12 h-12 rounded-full object-cover border-2 border-gray-300 dark:border-gray-600 transform transition-transform duration-300 hover:scale-105"
+                    >
+                @endif
+                <span class="font-semibold text-gray-900">
+                    <a href="{{ route('profile.show', $post->user->username) }}">
+                        Posted by {{ $post->user->name }}
+                    </a>
+                </span>
             </div>
 
-            <div style="margin-bottom: 1rem; color: #4b5563; font-size: 1rem;">
+            <div style="margin-bottom: 1rem; color: #4b5563; font-size: 1rem; margin-top: 50px">
                 {{ Str::words($post->description, 20) }}
             </div>
+
         </div>
 
         <!-- Read More Button -->
