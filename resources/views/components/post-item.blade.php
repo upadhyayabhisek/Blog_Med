@@ -1,3 +1,14 @@
+@php
+    $defaultImages = [
+        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTIYYU16HpQLz_WTVKkwSlHPQaSa8NM7hXrOI6XZdjUW1ZkVMkwHY5RhDf0LDe6Qm2tDY8&usqp=CAU",
+        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQwaC2JFGV1ztlUeZeuElwPBFz2lJHjuxAn-w&s",
+        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRXYy2wAj-vSX-KOnlhY9iIGTYa-TudJ4bcx4fDnbpWjTpJ3i2WOBm10jr4k4o7t8Q8I28&usqp=CAU",
+        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS2zg2x2H1o-uJ-YrksVRUTHWg64r5zr1zQd_x6KN4GL-GCfd0xuyMeqQgNogaaE8hC9CQ&usqp=CAU"
+    ];
+    $randomDefaultImage = $defaultImages[array_rand($defaultImages)];
+@endphp
+
+
 <div style="
     display: flex;
     max-width: calc(100vw - 450px);
@@ -47,13 +58,48 @@
                 </h5>
             </a>
 
-            <div>
-
+            <div class="flex items-center gap-4 text-gray-600 text-sm">
+                <span class="font-semibold text-blue-500">
+                    <a href="{{ route('post.byCategory', $post->category) }}">
+                        {{ $post->category ? $post->category->name : 'No Category' }}
+                    </a>
+                    <span class="text-gray-400">&nbsp•&nbsp</span>
+                    <span class="text-gray-900">{{ $post->readTime() }} minute read</span>
+                </span>
             </div>
 
-            <div style="margin-bottom: 1rem; color: #4b5563; font-size: 1rem;">
-                {{ Str::words($post->description, 20) }}
+            <div class="flex items-center gap-4 text-gray-600 text-sm mt-5">
+                @if($post->user->image)
+                    <a href="{{ route('profile.show', $post->user) }}">
+                    <img
+                            src="{{ Storage::url($post->user->image) }}"
+                            alt="Author Image"
+                            class="w-12 h-12 rounded-full object-cover border-2 border-blue-500 dark:border-blue-700 transform transition-transform duration-300 hover:scale-105"
+                        />
+                    </a>
+                @else
+                    <a href="{{ route('profile.show', $post->user) }}">
+                        <img
+                            src="{{$randomDefaultImage}}"
+                            alt="Default Author Image"
+                            class="w-12 h-12 rounded-full object-cover border-2 border-blue-500 dark:border-blue-700 transform transition-transform duration-300 hover:scale-105"
+                        />
+                    </a>
+
+                @endif
+                <span class="font-semibold text-gray-900">
+                    <a href="{{ route('post.show',
+                        ['username'=>$post->user->username, 'post'=>$post->slug])
+                    }}">
+                        Posted by {{ $post->user->name }}
+                    </a>
+                </span>
             </div>
+
+            <div style="margin-bottom: 1rem; color: #4b5563; font-size: 1rem; margin-top: 25px; text-align: justify;">
+                {{ Str::words($post->description, 30) }}
+            </div>
+
         </div>
 
         <!-- Read More Button -->

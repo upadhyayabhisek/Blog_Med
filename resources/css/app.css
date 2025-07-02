@@ -1,3 +1,11 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+:root {
+    --font-mono--font-variation-settings: 'wght' 400;
+    --font-mono--font-feature-settings: 'liga' 1;
+    --font-sans--font-variation-settings: 'wght' 500;
+    --font-sans--font-feature-settings: 'kern' 1;
+}
+
