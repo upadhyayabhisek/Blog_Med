@@ -1,6 +1,14 @@
 @php
     use App\Models\User;
+    $defaultImages = [
+        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTIYYU16HpQLz_WTVKkwSlHPQaSa8NM7hXrOI6XZdjUW1ZkVMkwHY5RhDf0LDe6Qm2tDY8&usqp=CAU",
+        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQwaC2JFGV1ztlUeZeuElwPBFz2lJHjuxAn-w&s",
+        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRXYy2wAj-vSX-KOnlhY9iIGTYa-TudJ4bcx4fDnbpWjTpJ3i2WOBm10jr4k4o7t8Q8I28&usqp=CAU",
+        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS2zg2x2H1o-uJ-YrksVRUTHWg64r5zr1zQd_x6KN4GL-GCfd0xuyMeqQgNogaaE8hC9CQ&usqp=CAU"
+    ];
+    $randomDefaultImage = $defaultImages[array_rand($defaultImages)];
 @endphp
+
 
 
 <x-app-layout>
@@ -14,7 +22,7 @@
                         <h1 class="text-5xl font-bold text-gray-900 dark:text-white">{{ ucfirst($post->title) }}</h1>
                         <p class="text-sm text-gray-500 dark:text-gray-400 mt-2">
                             Published on {{ $post->created_at->format('d M Y') }}
-                            <a href="#" class="inline-block p-4 border-b-2 rounded-t-lg
+                            <a href="{{ route('post.byCategory', $post->category) }}" class="inline-block p-4 border-b-2 rounded-t-lg
                                 text-gray-500 border-transparent hover:text-gray-600 hover:border-gray-300
                                 dark:text-gray-400 dark:hover:text-gray-300 dark:border-gray-700">
                                 Category : {{$post->category->name}}
@@ -25,7 +33,7 @@
 
                     <div class="flex gap-5 items-center mb-6 border-gray-200 dark:border-gray-700 pb-4">
                         @if($post->user->image)
-                            <a href="#">
+                            <a href="{{ route('profile.show', $post->user) }}">
                                 <img
                                     src="{{ Storage::url($post->user->image) }}"
                                     alt="Author Image"
@@ -33,9 +41,9 @@
                                 >
                             </a>
                         @else
-                            <a href="#">
+                            <a href="{{ route('profile.show', $post->user) }}">
                                 <img
-                                    src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQIf4R5qPKHPNMyAqV-FjS_OTBB8pfUV29Phg&s"
+                                    src="{{ $randomDefaultImage }}"
                                     alt="Default Author Image"
                                     class="w-16 h-16 rounded-full object-cover border-2 border-gray-300 dark:border-gray-600 hover:scale-105 transition-transform duration-300"
                                 >
@@ -65,7 +73,7 @@
                     <div class="flex items-center text-sm text-gray-600 dark:text-gray-400 gap-3 mb-6 border-gray-200 dark:border-gray-700 pt-4">
                         <span>{{ str_word_count($post->description) }} words</span>
                         <span class="text-gray-400">•</span>
-                        <span>{{ $post->readTime() }} min read</span>
+                        <span>{{ $post->readTime() }} minute read</span>
                     </div>
 
                     <div class="prose dark:prose-invert lg:prose-lg max-w-none text-gray-800 dark:text-gray-100">

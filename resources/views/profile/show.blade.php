@@ -1,3 +1,14 @@
+@php
+    $defaultImages = [
+        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTIYYU16HpQLz_WTVKkwSlHPQaSa8NM7hXrOI6XZdjUW1ZkVMkwHY5RhDf0LDe6Qm2tDY8&usqp=CAU",
+        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQwaC2JFGV1ztlUeZeuElwPBFz2lJHjuxAn-w&s",
+        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRXYy2wAj-vSX-KOnlhY9iIGTYa-TudJ4bcx4fDnbpWjTpJ3i2WOBm10jr4k4o7t8Q8I28&usqp=CAU",
+        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS2zg2x2H1o-uJ-YrksVRUTHWg64r5zr1zQd_x6KN4GL-GCfd0xuyMeqQgNogaaE8hC9CQ&usqp=CAU"
+    ];
+    $randomDefaultImage = $defaultImages[array_rand($defaultImages)];
+@endphp
+
+
 <x-app-layout>
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
@@ -12,7 +23,7 @@
                             >
                         @else
                             <img
-                                src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQIf4R5qPKHPNMyAqV-FjS_OTBB8pfUV29Phg&s"
+                                src="{{ $randomDefaultImage }}"
                                 alt="Default Author Image"
                                 class="w-48 h-48 rounded-full object-cover border-2 border-gray-300 dark:border-gray-600 hover:scale-105 transition-transform duration-300"
                             >
@@ -22,10 +33,13 @@
                             {{ $user->name }}
                         </h2>
 
-
-                            <p class="text-grey-700 dark:text-grey-200 text-sm mt-3">
-                            {{ $user->bio }}
-                            </p>
+                        <p class="text-grey-700 dark:text-grey-200 text-sm mt-3">
+                            @if($user->bio)
+                                {{ $user->bio }}
+                            @else
+                                <span>No bio added yet</span>
+                            @endif
+                        </p>
 
                         <div x-data="{
                                 following: {{ $user->isFollowedBy(auth()->user()) ? 'true' : 'false' }},
