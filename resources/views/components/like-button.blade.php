@@ -5,7 +5,7 @@
     count: {{$post->likes()->count()}},
     like(){
         axios.post('/like/{{$post->id}}').then(response => {
-            this.hasLiked = !this.hadLiked;
+            this.hasLiked = !this.hasLiked;
             this.count = response.data.likesCount;
         })
         .catch(error=> {
