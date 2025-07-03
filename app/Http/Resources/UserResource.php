@@ -19,6 +19,7 @@ class UserResource extends JsonResource
             'id'=>$this->id,
             'name'=>$this->name,
             'username'=>$this->username,
+            'bio'=>$this->bio,
             'Followers'=>FollowResource::collection($this->followers),
             'posts_info'=>PostResource::collection($this->posts)
         ];
