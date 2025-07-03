@@ -12,8 +12,6 @@
             console.log(error);
         });
     }
-
-
 }" class="flex items-center justify-between text-sm text-blue-600 dark:text-blue-400 mb-6 pt-5 border-t border-blue-200 dark:border-blue-700">
     <div class="flex items-center gap-2">
         <button @click="like()" class="flex items-center gap-1 px-3 py-1.5 rounded-full text-blue-700 dark:text-blue-200 hover:bg-blue-100 dark:hover:bg-blue-700 transition duration-200">
@@ -36,7 +34,7 @@
             </template>
 
             <span class="text-sm" x-text="count">
-            </span>
+            </span> Likes
         </button>
     </div>
 </div>

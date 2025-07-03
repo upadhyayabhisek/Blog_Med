@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Api\UserController;
 use App\Http\Controllers\LikeController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\PublicProfileController;
@@ -19,12 +20,11 @@ Route::middleware('auth')->group(function () {
 
 Route::get('/@{user:username}',[PublicProfileController::class, 'show'])->name('profile.show');
 
+Route::get('/', [PostController::class, 'index'])->name('dashboard');
+
+Route::get('/category/{category}', [PostController::class, 'category'])->name('post.byCategory');
+
 Route::middleware('auth','verified')->group(function () {
-
-    Route::get('/', [PostController::class, 'index']
-    )->name('dashboard');
-
-    Route::get('/category/{category}', [PostController::class, 'category'])->name('post.byCategory');
 
     Route::get('/post/new', [PostController::class, 'create']
     )->name('post.create');
@@ -44,6 +44,8 @@ Route::get('/follow/{user}', [FollowerController::class, 'followUnfollow'])
 
 Route::post('/like/{post}', [LikeController::class, 'like'])->name('like');
 
+
+Route::get('/test-users', [UserController::class, 'index']);
 
 
 require __DIR__.'/auth.php';
