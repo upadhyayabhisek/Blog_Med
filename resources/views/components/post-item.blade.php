@@ -97,7 +97,7 @@
             </div>
 
             <div style="margin-bottom: 1rem; color: #4b5563; font-size: 1rem; margin-top: 25px; text-align: justify;">
-                {{ Str::words($post->description, 30) }}
+                {{ Str::words($post->description, 20) }}
             </div>
 
         </div>
