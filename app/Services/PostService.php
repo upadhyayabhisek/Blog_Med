@@ -5,11 +5,18 @@ namespace App\Services;
 
 use App\Models\Category;
 use App\Models\Post;
+use App\Repositories\PostRepository;
+use App\Repositories\PostRepositoryInterface;
 use Illuminate\Support\Str;
 
 class PostService{
+    protected $postRepository;
+    public function __construct(PostRepository $postRepository)
+    {
+        $this->postRepository = $postRepository;
+    }
     public function getLatestPosts($perPage = 5){
-        return Post::orderBy('created_at', 'DESC')->paginate($perPage);
+        return $this->postRepository->getLatestPosts($perPage);
     }
 
     public function getCategories(){
@@ -23,11 +30,12 @@ class PostService{
         $data['slug'] = Str::slug($data['title']);
         $imagePath = $image->store('posts', 'public');
         $data['image'] = $imagePath;
-        Post::create($data);
+
+        $this->postRepository->createPost($data);
     }
 
     public function getPostByCategory(Category $category): \Illuminate\Contracts\Pagination\Paginator
     {
-        return $category->posts()->simplePaginate(5);
+        return $this->postRepository->searchByCategory($category);
     }
 }
