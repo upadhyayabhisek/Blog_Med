@@ -36,7 +36,7 @@ class ProfileService
     {
         $user = $request->user();
 
-        AccountDeletionConfirmation::dispatch($user);
+        // no need for dispatch here
         Auth::logout();
 
         $request->session()->invalidate();
