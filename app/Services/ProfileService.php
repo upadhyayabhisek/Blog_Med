@@ -2,6 +2,8 @@
 
 namespace App\Services;
 
+use App\Jobs\AccountDeletionConfirmation;
+use App\Mail\DeletedAccount;
 use App\Models\User;
 use App\Repositories\ProfileRepository;
 use Illuminate\Http\Request;
@@ -26,15 +28,17 @@ class ProfileService
         if ($user->isDirty('email')) {
             $user->email_verified_at = null;
         }
-
         $this->profileRepository->updateUser($user);
     }
+
 
     public function deleteUserProfile(Request $request): void
     {
         $user = $request->user();
+
+        AccountDeletionConfirmation::dispatch($user);
         Auth::logout();
-        $user->delete();
+
         $request->session()->invalidate();
         $request->session()->regenerateToken();
     }

@@ -4,9 +4,7 @@
 namespace App\Services;
 
 use App\Models\Category;
-use App\Models\Post;
 use App\Repositories\PostRepository;
-use App\Repositories\PostRepositoryInterface;
 use Illuminate\Support\Str;
 
 class PostService{
@@ -38,4 +36,7 @@ class PostService{
     {
         return $this->postRepository->searchByCategory($category);
     }
+
 }
+
+
